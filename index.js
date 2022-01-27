@@ -11,7 +11,8 @@ try {
 
     const inputJson = JSON.parse(inputFile);
 
-    const filteredIncludes = jmes.search(inputJson, filterString);
+    // Remove null values
+    const filteredIncludes = jmes.search(inputJson, filterString).filter(function(e){return e});
     const filteredIncludesAsString = JSON.stringify(filteredIncludes);
 
     const outputString = `{"include":${filteredIncludesAsString}}`
